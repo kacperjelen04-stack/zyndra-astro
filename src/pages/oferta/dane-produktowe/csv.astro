@@ -1,0 +1,26 @@
+---
+import LayoutUsluga from '../../../components/layout/LayoutUsluga.astro';
+---
+
+<LayoutUsluga 
+  title="Obróbka i normalizacja plików CSV | Zyndra"
+  description="Przetwarzanie ciężkich i nieuporządkowanych plików CSV z hurtowni. Czyścimy błędy, naprawiamy kodowanie i przygotowujemy dane do importu."
+  kicker="Dane Produktowe"
+  h1="Normalizacja i obróbka plików <em>CSV</em>"
+  lead="Hurtownie rzucają plikami ważącymi gigabajty, pełnymi błędów i przesuniętych kolumn? Przekształcimy ten chaos w czystą, gotową do sprzedaży bazę produktową."
+>
+
+  <h2>Czyste dane to fundament sprzedaży</h2>
+  <p>Standardowe wtyczki importujące często wywracają się na plikach CSV o nietypowej strukturze, braku kodów EAN czy błędnym kodowaniu znaków (tzw. "krzaczki"). Zamiast ręcznie poprawiać arkusze w Excelu przed każdym importem, tworzymy parsery, które robią to automatycznie w locie.</p>
+
+  <!-- MIEJSCE NA ZDJĘCIE: Screen z Excela/Power Query lub edytora kodu pokazujący proces czyszczenia i mapowania kolumn -->
+  <img src="/images/dowody/dane-obrobka-csv.webp" alt="Proces normalizacji i czyszczenia pliku CSV przed importem" class="proof-image" loading="lazy" />
+
+  <h3>Co naprawiamy w plikach tekstowych?</h3>
+  <ul>
+    <li><strong>Standaryzacja kolumn i atrybutów:</strong> Łączymy lub rozdzielamy dane (np. wyciąganie rozmiaru z nazwy produktu) do osobnych, czystych kolumn.</li>
+    <li><strong>Czyszczenie struktury HTML:</strong> Usuwanie zanieczyszczonych znaczników, starych stylów CSS i ukrytych linków z opisów dostarczanych przez producentów.</li>
+    <li><strong>Wzbogacanie bazy:</strong> Uzupełnianie brakujących danych (np. stawek VAT, wag gabarytowych) na podstawie reguł opartych na kategoriach lub nazwach.</li>
+  </ul>
+
+</LayoutUsluga>

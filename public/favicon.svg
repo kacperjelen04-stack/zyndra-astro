@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="6" fill="#111c2e"/>
+  <rect x="7" y="5" width="2.5" height="22" rx="1" fill="#00e896"/>
+  <text x="11" y="27" font-family="Space Grotesk,Inter,sans-serif" font-size="26" font-weight="700" fill="#f0f4ff">Z</text>
+</svg>

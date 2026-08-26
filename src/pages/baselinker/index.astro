@@ -1,0 +1,45 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import DeptHero from "../../components/baselinker/DeptHero.astro";
+import FlowDiagram from "../../components/baselinker/FlowDiagram.astro";
+import DeptHubCards from "../../components/baselinker/DeptHubCards.astro";
+import CTABanner from "../../components/baselinker/CTABanner.astro";
+
+const diagram = `                 BASELINKER
+                     │
+        ┌────────────┼────────────┐
+        ▼            ▼             ▼
+  KONFIGURACJA   MARKETPLACE     SHOPER
+        │             │
+   ┌────┼────┐   ┌────┼────┐
+   ▼    ▼    ▼   ▼    ▼    ▼
+MAGAZYNY KATALOG MAPA ALLEGRO ERLI EMPIK`;
+
+const cards = [
+  { href: "/baselinker/konfiguracja/", label: "Konfiguracja", group: "Konfiguracja" },
+  { href: "/baselinker/magazyny/", label: "Magazyny", group: "Konfiguracja" },
+  { href: "/baselinker/katalog-produktow/", label: "Katalog produktów", group: "Konfiguracja" },
+  { href: "/baselinker/mapowanie/", label: "Mapowanie", group: "Konfiguracja" },
+  { href: "/baselinker/allegro/", label: "Allegro", group: "Marketplace" },
+  { href: "/baselinker/erli/", label: "ERLI", group: "Marketplace" },
+  { href: "/baselinker/empik/", label: "Marketplace", group: "Marketplace" },
+  { href: "/baselinker/shoper/", label: "Shoper", group: "Sklep" },
+];
+---
+
+<Layout
+  title="BaseLinker — konfiguracja, integracje, synchronizacja | Zyndra"
+  description="Wdrożenia BaseLinker dopasowane do sposobu sprzedaży: konfiguracja, magazyny, katalog produktów, mapowanie oraz integracje z Allegro, ERLI, Empik i Shoper."
+>
+  <DeptHero
+    breadcrumb="Dział"
+    title="BaseLinker skonfigurowany pod Twój sposób sprzedaży."
+    lead="Sprzedajesz przez kilka kanałów, a BaseLinker ma to spinać w jedną całość — stany, ceny, zamówienia, katalog. Zakres wdrożenia zależy od tego, co dokładnie łączysz, dlatego każdy obszar ma osobną, szczegółową podstronę."
+  />
+
+  <FlowDiagram diagram={diagram} caption="Trzy główne gałęzie: konfiguracja podstawowa, marketplace'y i integracja ze sklepem." />
+
+  <DeptHubCards cards={cards} />
+
+  <CTABanner title="Nie wiesz, od którego obszaru zacząć?" />
+</Layout>

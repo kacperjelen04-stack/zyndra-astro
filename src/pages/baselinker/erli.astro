@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import DeptHero from "../../components/baselinker/DeptHero.astro";
+import FlowDiagram from "../../components/baselinker/FlowDiagram.astro";
+import BulletSection from "../../components/baselinker/BulletSection.astro";
+import CaseStudyPlaceholder from "../../components/baselinker/CaseStudyPlaceholder.astro";
+import CTABanner from "../../components/baselinker/CTABanner.astro";
+import RelatedLinks from "../../components/baselinker/RelatedLinks.astro";
+
+const diagram = `  BASELINKER
+      │
+      ▼
+     ERLI
+      │
+  ┌───┼──────────┐
+  ▼   ▼          ▼
+ API PRODUKTY ZAMÓWIENIA
+  │   │          │
+  ▼   ▼          ▼
+CENY STANY   STATUSY`;
+---
+
+<Layout
+  title="BaseLinker + ERLI — konfiguracja integracji | Zyndra"
+  description="Poprawna integracja BaseLinker z ERLI: autoryzacja API, synchronizacja produktów, cen, stanów i statusów zamówień."
+>
+  <DeptHero
+    breadcrumb="BaseLinker → ERLI"
+    title="BaseLinker i ERLI, poprawnie skonfigurowane."
+    quote="Mam ERLI i BaseLinkera. Jak to poprawnie skonfigurować?"
+  />
+
+  <FlowDiagram diagram={diagram} />
+
+  <BulletSection
+    label="Zakres"
+    title="Co obejmuje integracja"
+    items={[
+      "Autoryzacja konta przez API ERLI",
+      "Synchronizacja produktów",
+      "Aktualizacja cen",
+      "Aktualizacja stanów",
+      "Obsługa zamówień",
+      "Statusy przesyłek",
+    ]}
+  />
+
+  <CaseStudyPlaceholder />
+
+  <CTABanner title="ERLI spięte z BaseLinkerem bez ręcznej roboty" />
+
+  <RelatedLinks
+    title="Potrzebujesz innego marketplace?"
+    links={[
+      { href: "/baselinker/allegro/", label: "Allegro" },
+      { href: "/baselinker/empik/", label: "Empik" },
+      { href: "/baselinker/shoper/", label: "Shoper" },
+    ]}
+  />
+</Layout>

@@ -1,0 +1,26 @@
+---
+import LayoutUsluga from '../../../components/layout/LayoutUsluga.astro';
+---
+
+<LayoutUsluga 
+  title="Zaawansowane parsowanie plików XML | Zyndra"
+  description="Integracje z hurtowniami oparte o skomplikowane pliki XML. Wyciągamy dokładnie te węzły i atrybuty, których potrzebuje Twój system."
+  kicker="Dane Produktowe"
+  h1="Zaawansowane parsowanie plików <em>XML</em>"
+  lead="Złożone struktury zagnieżdżonych węzłów XML nie muszą blokować Twoich integracji. Budujemy mechanizmy potrafiące wyłuskać każdą cechę produktu z najbardziej skomplikowanych feedów."
+>
+
+  <h2>Obsługa ciężkich feedów produktowych</h2>
+  <p>Pliki XML od dużych dostawców potrafią ważyć setki megabajtów i zawierać specyficzne zagnieżdżenia atrybutów, których nie obsługują gotowe moduły e-commerce. Piszemy skrypty, które efektywnie iterują po plikach XML, pobierając tylko niezbędne wartości, bez przeciążania Twojego serwera.</p>
+
+  <!-- MIEJSCE NA ZDJĘCIE: Screen z edytora kodu z widoczną zagnieżdżoną strukturą XML obok czystego wyniku w formacie JSON lub w panelu -->
+  <img src="/images/dowody/dane-parsowanie-xml.webp" alt="Mapowanie węzłów i atrybutów z pliku XML" class="proof-image" loading="lazy" />
+
+  <h3>Kluczowe rozwiązania w obróbce XML:</h3>
+  <ul>
+    <li><strong>Wyciąganie cech wariantowych:</strong> Prawidłowe odczytywanie i łączenie produktów "rodziców" z ich "dziećmi" (rozmiary, kolory), zachowując integralność oferty na sklepie.</li>
+    <li><strong>Mapowanie zdjęć i multimediów:</strong> Ekstrakcja wielu adresów URL zdjęć, zmiana ich kolejności i walidacja dostępności przed pobraniem na serwer sklepu.</li>
+    <li><strong>Praca na ogromnych zbiorach:</strong> Optymalizacja pamięciowa przy przetwarzaniu plików XML posiadających setki tysięcy indeksów.</li>
+  </ul>
+
+</LayoutUsluga>

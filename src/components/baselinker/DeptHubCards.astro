@@ -1,0 +1,72 @@
+---
+export interface Card {
+  href: string;
+  label: string;
+  group: string;
+}
+
+export interface Props {
+  cards: Card[];
+}
+
+const { cards } = Astro.props;
+---
+
+<section class="hub-cards" id="podstrony">
+  <div class="hub-cards__inner">
+    <p class="section-label">Wybierz obszar</p>
+    <h2 class="section-title">Każdy element to osobna podstrona</h2>
+    <p class="section-sub">Konfiguracja i wdrożenie różnią się w zależności od tego, co dokładnie łączysz — dlatego każdy obszar ma własną, szczegółową stronę zamiast jednego ogólnego opisu.</p>
+
+    <div class="hub-cards__grid">
+      {cards.map((card) => (
+        <a class="hub-card" href={card.href}>
+          <span class="hub-card__group">{card.group}</span>
+          <span class="hub-card__label">{card.label}</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hub-cards { padding: 24px 24px 96px; }
+  .hub-cards__inner { max-width: 1100px; margin: 0 auto; }
+  .hub-cards__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .hub-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .hub-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+  }
+  .hub-card__group {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .hub-card__label {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+  .hub-card svg { color: var(--accent); margin-top: 4px; }
+</style>

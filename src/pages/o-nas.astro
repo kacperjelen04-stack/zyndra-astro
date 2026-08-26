@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="O nas | Zyndra"
+  description="Strona w przygotowaniu."
+  noindex={true}
+>
+  <section class="stub">
+    <div class="stub__inner">
+      <p class="section-label">O nas</p>
+      <h1 class="section-title">Ta strona jest w przygotowaniu.</h1>
+      <p class="section-sub">Treść pojawi się tutaj wkrótce.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .stub {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    padding: 152px 24px 96px;
+  }
+  .stub__inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stub .section-sub { margin: 0 auto; }
+</style>

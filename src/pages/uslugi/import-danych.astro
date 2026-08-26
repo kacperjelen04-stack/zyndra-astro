@@ -1,0 +1,66 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/sections/ServiceHero.astro";
+import SolutionSection from "../../components/sections/SolutionSection.astro";
+import ProofSection from "../../components/sections/ProofSection.astro";
+import QualifyingForm from "../../components/forms/QualifyingForm.astro";
+
+const SERVICE = "Import i czyszczenie danych produktowych";
+---
+
+<Layout
+  title="Import i czyszczenie danych produktowych CSV/XML | Zyndra"
+  description="Import produktów z hurtowni bez ręcznego mapowania CSV/XML. Automatyczne czyszczenie, mapowanie i normalizacja danych produktowych przy każdej nowej dostawie."
+>
+  <ServiceHero
+    kicker="Import i czyszczenie danych"
+    title="Nowa hurtownia znaczy znowu"
+    titleAccent="ręczne poprawki w CSV."
+    lead="Każdy dostawca eksportuje dane inaczej — inne nazwy kolumn, inne jednostki, inne kategorie. Bez ustandaryzowanego procesu każdy import to od nowa przekopywanie się przez arkusz, którego nikt nie chce dotykać."
+    symptoms={[
+      "Plik z hurtowni ma inne kolumny niż poprzedni — import trzeba mapować ręcznie",
+      "Po imporcie w sklepie pojawiają się duplikaty i puste opisy",
+      "Ceny i jednostki miary trzeba poprawiać ręcznie, wiersz po wierszu",
+      "Aktualizacja oferty zajmuje dni zamiast godzin",
+    ]}
+  />
+
+  <SolutionSection
+    title="Ustandaryzowany proces zamiast ręcznej korekty"
+    intro="Rozwiązanie budowane pod format Twoich dostawców — nie generyczny konwerter, tylko pipeline dopasowany do konkretnych plików, z którymi pracujesz."
+    items={[
+      {
+        title: "Automatyczne mapowanie plików",
+        description:
+          "Skrypty dopasowują kolumny z pliku dostawcy do struktury docelowej platformy — Shoper, WooCommerce lub bezpośrednio BaseLinker.",
+      },
+      {
+        title: "Czyszczenie i normalizacja danych",
+        description:
+          "Usuwanie duplikatów, ujednolicanie jednostek miary, walidacja cen i uzupełnianie braków według reguł ustalonych z Tobą.",
+      },
+      {
+        title: "Powtarzalny proces, nie jednorazówka",
+        description:
+          "Gotowy pipeline importu działa przy każdej kolejnej dostawie z hurtowni — nie tylko przy pierwszym wdrożeniu.",
+      },
+      {
+        title: "Wynik tam, gdzie go potrzebujesz",
+        description:
+          "Gotowy plik CSV/XML do wgrania albo bezpośredni zapis do sklepu i BaseLinkera przez API — zależnie od Twojego procesu.",
+      },
+    ]}
+  />
+
+  <ProofSection
+    title="Co realnie się zmienia po wdrożeniu"
+    stats={[
+      { value: "Tysiące", label: "Wierszy przetworzonych bez ręcznej korekty" },
+      { value: "0", label: "Kopiowania danych między arkuszami Excela" },
+      { value: "24h", label: "Czas pierwszej odpowiedzi technicznej" },
+    ]}
+    note="Dokładny czas realizacji zależy od jakości danych wejściowych i liczby pozycji — wycena po przejrzeniu przykładowego pliku."
+  />
+
+  <QualifyingForm service={SERVICE} />
+</Layout>

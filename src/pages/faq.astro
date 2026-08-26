@@ -1,0 +1,276 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const categories = [
+  { id: "all", label: "Wszystkie" },
+  { id: "integracje", label: "Integracje i BaseLinker" },
+  { id: "dane", label: "Import i dane" },
+  { id: "ai", label: "Opisy AI / SEO" },
+  { id: "wspolpraca", label: "Współpraca" },
+];
+
+const faqs = [
+  {
+    cat: "integracje",
+    q: "Co to jest BaseLinker i kiedy warto go wdrożyć?",
+    a: "BaseLinker to system zarządzania sprzedażą wielokanałową — agreguje zamówienia z marketplace'ów i sklepu w jednym miejscu, automatyzuje statusy i synchronizuje stany magazynowe. Wdrożenie ma sens, gdy sprzedajesz na więcej niż jednym kanale albo planujesz to zrobić.",
+  },
+  {
+    cat: "integracje",
+    q: "Jakie systemy ERP obsługujecie poza Subiektem GT?",
+    a: "Najczęściej pracuję z Subiektem GT, ale integracja przez API działa z każdym systemem, który to API udostępnia — w tym Comarch Optima, Insert Rachmistrz/Rewizor czy systemy dedykowane. Jeśli Twój system nie ma gotowego API, sprawdzam alternatywne opcje na etapie konsultacji.",
+  },
+  {
+    cat: "integracje",
+    q: "Ile trwa wdrożenie integracji BaseLinker + ERP?",
+    a: "Podstawowa integracja sklepu z 2–3 marketplace'ami i systemem wysyłki to zwykle 1–2 tygodnie. Dodanie synchronizacji z ERP i reguł automatycznych wydłuża to do 2–4 tygodni, zależnie od złożoności procesów. Dokładny harmonogram dostajesz po konsultacji.",
+  },
+  {
+    cat: "integracje",
+    q: "Czy integracja działa też z niestandardowym systemem, którego nie ma na liście BaseLinkera?",
+    a: "Tak — jeśli system ma jakiekolwiek API lub możliwość eksportu danych, da się go połączyć przez webhooki lub integrację szytą na miarę. To częsty przypadek przy hurtowniach z autorskim oprogramowaniem.",
+  },
+  {
+    cat: "dane",
+    q: "Czy mogę zlecić tylko jednorazowe czyszczenie bazy, bez stałej integracji?",
+    a: "Tak, to niezależna usługa. Jeśli jednak hurtownia regularnie aktualizuje ofertę, warto rozważyć gotowy, powtarzalny proces importu — jednorazowe czyszczenie rozwiązuje problem raz, automatyzacja rozwiązuje go na stałe.",
+  },
+  {
+    cat: "dane",
+    q: "Jakie formaty plików obsługujecie?",
+    a: "Najczęściej CSV i XML, rzadziej XLSX. Przy hurtowniach z własnym API import odbywa się bezpośrednio, bez pośredniczącego pliku.",
+  },
+  {
+    cat: "dane",
+    q: "Co się dzieje z produktami, które już są w sklepie, jeśli importuję nową bazę?",
+    a: "Mapowanie odbywa się po SKU lub EAN — istniejące produkty są aktualizowane, a nie duplikowane. Reguły mapowania ustalamy przed pierwszym importem.",
+  },
+  {
+    cat: "dane",
+    q: "Ile kosztuje import i czyszczenie danych?",
+    a: "Wycena indywidualna — dwa pliki po 5000 pozycji mogą wymagać zupełnie innego nakładu pracy w zależności od jakości danych wejściowych. Realną wycenę dostajesz po przejrzeniu przykładowego pliku, nie z automatu.",
+  },
+  {
+    cat: "ai",
+    q: "Czy Google nie potraktuje opisów generowanych automatycznie jako spam?",
+    a: "Google karze duplicate content i treści niskiej jakości — nie sam fakt, że powstały automatycznie. Opisy generowane masowo, ale unikalne między sobą i faktycznie opisujące produkt, nie są z automatu degradowane. Kluczowa jest unikalność i wartość dla czytelnika, nie metoda powstania.",
+  },
+  {
+    cat: "ai",
+    q: "Czy mogę zobaczyć przykładowe opisy przed pełnym wdrożeniem?",
+    a: "Tak — zanim uruchomimy generowanie dla całej bazy, przygotowuję próbkę na wybranych produktach, żebyś mógł ocenić styl i jakość.",
+  },
+  {
+    cat: "ai",
+    q: "Czy opisy są dopasowane do różnych platform (sklep, Allegro, Google Shopping)?",
+    a: "Tak. Allegro, własny sklep i Google Shopping mają różne wymagania co do długości, struktury i słów kluczowych — struktura opisu jest dopasowana do miejsca, w którym ląduje.",
+  },
+  {
+    cat: "wspolpraca",
+    q: "Jak wygląda pierwsza rozmowa i czy trzeba się do niej przygotować?",
+    a: "Nie jest wymagane żadne przygotowanie. Formularz kwalifikujący zbiera podstawowe informacje z góry, więc pierwsza rozmowa skupia się od razu na konkretach. Konsultacja jest bezpłatna i niezobowiązująca.",
+  },
+  {
+    cat: "wspolpraca",
+    q: "Czy współpraca odbywa się zdalnie?",
+    a: "Zdecydowana większość projektów realizowana jest w pełni zdalnie — komunikacja przez e-mail, telefon lub komunikator. Jestem z Rzeszowa, więc przy projektach lokalnych możliwe jest też spotkanie stacjonarne.",
+  },
+  {
+    cat: "wspolpraca",
+    q: "Dlaczego na stronie nie ma cennika?",
+    a: "Zakres każdego wdrożenia — liczba kanałów, systemów i jakość danych wejściowych — jest inny. Podanie sztywnych widełek byłoby nieuczciwe wobec Ciebie: wolę wycenić dokładnie po rozmowie o Twojej sytuacji, niż zgadywać na stronie.",
+  },
+  {
+    cat: "wspolpraca",
+    q: "Co w przypadku problemów po wdrożeniu?",
+    a: "Błędy wynikające z wdrożenia usuwam bezpłatnie. Awarie spowodowane przez platformę hostingową lub zmiany API zewnętrznych serwisów to osobna kategoria, ale staram się reagować również w takich sytuacjach.",
+  },
+  {
+    cat: "wspolpraca",
+    q: "Czy wystawiana jest faktura VAT?",
+    a: "Tak, prowadzę zarejestrowaną jednoosobową działalność gospodarczą. Faktura wystawiana jest do każdej transakcji.",
+  },
+];
+---
+
+<Layout
+  title="FAQ — integracje, dane i automatyzacja e-commerce | Zyndra"
+  description="Odpowiedzi na pytania o integracje BaseLinker, import i czyszczenie danych produktowych, automatyczne opisy AI oraz przebieg współpracy."
+>
+  <div class="faq-hero">
+    <p class="section-label">Baza wiedzy</p>
+    <h1 class="section-title">Pytania i odpowiedzi</h1>
+    <p class="section-sub">
+      Konkretne odpowiedzi na pytania, które pojawiają się przed rozpoczęciem współpracy —
+      bez marketingowych ogólników.
+    </p>
+  </div>
+
+  <div class="container-sm faq-body">
+    <div class="faq-cats" id="faqCats">
+      {categories.map((cat, i) => (
+        <button class="faq-cat-btn" class:list={[{ active: i === 0 }]} data-cat={cat.id}>
+          {cat.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="faq-list" id="faqList">
+      {faqs.map((item) => (
+        <div class="faq-item" data-cat={item.cat}>
+          <button class="faq-question">
+            {item.q}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>{item.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="faq-cta">
+      <p>Nie znalazłeś odpowiedzi na swoje pytanie?</p>
+      <a href="/kontakt" class="btn-primary">
+        Napisz bezpośrednio
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .faq-hero {
+    padding: 152px 24px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-hero .section-title { margin-bottom: 12px; }
+  .faq-hero .section-sub { margin: 0 auto; }
+
+  .faq-body { padding-top: 56px; padding-bottom: 100px; }
+
+  .faq-cats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+  .faq-cat-btn {
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+  }
+  .faq-cat-btn:hover,
+  .faq-cat-btn.active {
+    background: var(--accent-dim);
+    border-color: var(--border-accent);
+    color: var(--accent);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+  .faq-item:hover { border-color: var(--border-accent); }
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 20px 24px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-family: var(--font-body);
+    transition: color 0.2s ease;
+  }
+  .faq-question:hover { color: var(--accent); }
+  .faq-question svg {
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+  .faq-question.active { color: var(--accent); }
+  .faq-question.active svg { transform: rotate(180deg); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .faq-answer p {
+    padding: 0 24px 22px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.8;
+  }
+
+  .faq-cta {
+    text-align: center;
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+  .faq-cta p { color: var(--text-muted); margin-bottom: 20px; }
+</style>
+
+<script>
+  const questions = document.querySelectorAll<HTMLButtonElement>(".faq-question");
+  questions.forEach((question) => {
+    question.addEventListener("click", () => {
+      const isActive = question.classList.contains("active");
+      questions.forEach((q) => {
+        q.classList.remove("active");
+        const answer = q.nextElementSibling as HTMLElement | null;
+        if (answer) answer.style.maxHeight = "";
+      });
+      if (!isActive) {
+        question.classList.add("active");
+        const answer = question.nextElementSibling as HTMLElement | null;
+        if (answer) answer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+  });
+
+  const catBtns = document.querySelectorAll<HTMLButtonElement>(".faq-cat-btn");
+  const items = document.querySelectorAll<HTMLElement>(".faq-item");
+  catBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const cat = btn.dataset.cat;
+      catBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      items.forEach((item) => {
+        const show = cat === "all" || item.dataset.cat === cat;
+        item.style.display = show ? "block" : "none";
+        if (!show) {
+          const q = item.querySelector<HTMLButtonElement>(".faq-question");
+          const a = item.querySelector<HTMLElement>(".faq-answer");
+          q?.classList.remove("active");
+          if (a) a.style.maxHeight = "";
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,26 @@
+---
+import LayoutUsluga from '../../../components/layout/LayoutUsluga.astro';
+---
+
+<LayoutUsluga 
+  title="Diagnostyka problemów w e-commerce | Zyndra"
+  description="Lokalizujemy błędy w przepływie danych, spadki wydajności i awarie API. Szybka diagnoza i gaszenie pożarów w Twojej infrastrukturze."
+  kicker="Wsparcie Techniczne"
+  h1="Szybka <em>diagnostyka błędów</em> w e-commerce"
+  lead="Zamówienia przestały spływać? Stany magazynowe się rozjeżdżają? Namierzamy wąskie gardła i gasimy pożary w infrastrukturze szybciej, niż zdążysz stracić klientów."
+>
+
+  <h2>Lokalizacja problemu na poziomie kodu</h2>
+  <p>Kiedy w złożonym środowisku e-commerce (Sklep, ERP, BaseLinker, Marketplace) pojawia się błąd, najwięcej czasu zajmuje znalezienie winnego. Zamiast zgadywać, zaglądamy pod maskę. Analizujemy logi serwera, odpowiedzi z endpointów API oraz rejestry zdarzeń, aby precyzyjnie namierzyć miejsce, w którym komunikacja ulega zerwaniu.</p>
+
+  <!-- MIEJSCE NA ZDJĘCIE: Screen z logów błędów API (np. w BaseLinkerze) z widocznymi komunikatami typu 400 Bad Request / 500 Internal Server Error -->
+  <img src="/images/dowody/wsparcie-logi-bledow.webp" alt="Analiza logów błędów komunikacji API pomiędzy systemami" class="proof-image" loading="lazy" />
+
+  <h3>Co weryfikujemy podczas diagnostyki?</h3>
+  <ul>
+    <li><strong>Zgodność komunikacji API:</strong> Sprawdzamy autoryzacje, tokeny i limity zapytań, które często są powodem cichych blokad (np. błędy Rate Limit na Allegro).</li>
+    <li><strong>Integralność przesyłu danych:</strong> Śledzimy ścieżkę zamówienia od kliknięcia "Kupuję", szukając momentu, w którym gubi ono status lub pozycje asortymentowe.</li>
+    <li><strong>Wydajność zapytań:</strong> Namierzamy zapętlone skrypty i przeciążone bazy danych, które powodują opóźnienia (timeouty) w synchronizacji.</li>
+  </ul>
+
+</LayoutUsluga>

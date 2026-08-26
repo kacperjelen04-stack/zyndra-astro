@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/Layout.astro'; 
+
+export interface Props {
+  title: string;
+  description: string;
+  kicker: string;
+  h1: string;
+  lead: string;
+}
+
+const { title, description, kicker, h1, lead } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  
+  <!-- LEKKI HEADER NA PODSTRONY -->
+  <header class="page-header">
+    <div class="page-header__inner">
+      <span class="kicker">{kicker}</span>
+      <h1 class="title" set:html={h1}></h1>
+      <p class="lead">{lead}</p>
+    </div>
+  </header>
+
+  <!-- MIEJSCE NA TWOJĄ TREŚĆ (Mięso SEO) -->
+  <article class="content-wrapper">
+    <div class="content-inner prose">
+      <slot /> 
+    </div>
+  </article>
+
+  <!-- UNIWERSALNE CTA NA DOLE KAŻDEJ PODSTRONY -->
+  <section class="simple-cta">
+    <div class="simple-cta__inner">
+      <h2>Zbyt dużo ręcznej pracy?</h2>
+      <p>Pogadajmy o tym, jak możemy zautomatyzować procesy w Twojej firmie. Bez ściemy, same konkrety.</p>
+      <a href="/kontakt" class="btn-primary">Umów bezpłatną konsultację</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* --- SMUKŁY HEADER --- */
+  .page-header {
+    padding: 120px 24px 60px;
+    background: var(--bg-dark, #0f1115);
+    border-bottom: 1px solid var(--border, #27272a);
+    text-align: center;
+  }
+  .page-header__inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .kicker {
+    display: inline-block;
+    color: var(--accent, #00e896);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+  .title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  .title :global(em) {
+    font-style: normal;
+    color: var(--accent, #00e896);
+  }
+  .lead {
+    font-size: 1.1rem;
+    color: #a1a1aa;
+    line-height: 1.6;
+  }
+
+  /* --- TREŚĆ --- */
+  .content-wrapper {
+    padding: 80px 24px;
+  }
+  .content-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #d4d4d8;
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+  .content-inner .proof-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border, #27272a);
+  margin: 2.5rem 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  display: block;
+}
+  /* Dodajemy trochę stylów pod tagi HTML z treści SEO */
+  .content-inner :global(h2) { color: #fff; margin: 2rem 0 1rem; font-size: 1.8rem; }
+  .content-inner :global(h3) { color: #fff; margin: 1.5rem 0 1rem; font-size: 1.4rem; }
+  .content-inner :global(p) { margin-bottom: 1.5rem; }
+  .content-inner :global(ul) { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+  .content-inner :global(li) { margin-bottom: 0.5rem; }
+  .content-inner :global(strong) { color: #fff; }
+
+  /* --- CTA NA DOLE --- */
+  .simple-cta {
+    padding: 80px 24px;
+    background: #121419;
+    border-top: 1px solid #27272a;
+  }
+  .simple-cta__inner {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background: #181a1f;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+  }
+  .simple-cta__inner h2 { color: #fff; font-size: 1.8rem; margin-bottom: 1rem; }
+  .simple-cta__inner p { color: #a1a1aa; margin-bottom: 2rem; }
+  .btn-primary {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #e4e4e7; }
+</style>

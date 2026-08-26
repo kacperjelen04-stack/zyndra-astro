@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import DeptHero from "../../components/baselinker/DeptHero.astro";
+import FlowDiagram from "../../components/baselinker/FlowDiagram.astro";
+import BulletSection from "../../components/baselinker/BulletSection.astro";
+import CaseStudyPlaceholder from "../../components/baselinker/CaseStudyPlaceholder.astro";
+import CTABanner from "../../components/baselinker/CTABanner.astro";
+import RelatedLinks from "../../components/baselinker/RelatedLinks.astro";
+
+const diagram = `  BASELINKER
+      │
+      ▼
+    EMPIK
+      │
+  ┌───┼──────────┐
+  ▼   ▼          ▼
+ API PRODUKTY ZAMÓWIENIA
+  │   │          │
+  ▼   ▼          ▼
+CENY STANY   STATUSY`;
+---
+
+<Layout
+  title="BaseLinker + Empik — konfiguracja integracji | Zyndra"
+  description="Poprawna integracja BaseLinker z Empik: autoryzacja API, synchronizacja produktów, cen, stanów i statusów zamówień."
+>
+  <DeptHero
+    breadcrumb="BaseLinker → Empik"
+    title="BaseLinker i Empik, poprawnie skonfigurowane."
+    quote="Mam Empik i BaseLinkera. Jak to poprawnie skonfigurować?"
+  />
+
+  <FlowDiagram diagram={diagram} />
+
+  <BulletSection
+    label="Zakres"
+    title="Co obejmuje integracja"
+    items={[
+      "Autoryzacja konta przez API Empik",
+      "Synchronizacja produktów",
+      "Aktualizacja cen",
+      "Aktualizacja stanów",
+      "Obsługa zamówień",
+      "Statusy przesyłek",
+    ]}
+  />
+
+  <CaseStudyPlaceholder />
+
+  <CTABanner title="Empik spięty z BaseLinkerem bez ręcznej roboty" />
+
+  <RelatedLinks
+    title="Potrzebujesz innego marketplace?"
+    links={[
+      { href: "/baselinker/allegro/", label: "Allegro" },
+      { href: "/baselinker/erli/", label: "ERLI" },
+      { href: "/baselinker/shoper/", label: "Shoper" },
+    ]}
+  />
+</Layout>

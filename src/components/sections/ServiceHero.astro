@@ -1,0 +1,142 @@
+---
+export interface Props {
+  kicker: string;
+  title: string;
+  titleAccent: string;
+  lead: string;
+  symptoms: string[];
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  kicker,
+  title,
+  titleAccent,
+  lead,
+  symptoms,
+  ctaLabel = "Sprawdź, czy to pasuje do mojej sytuacji",
+  ctaHref = "#formularz",
+} = Astro.props;
+---
+
+<section class="service-hero" aria-labelledby="service-hero-heading">
+  <div class="service-hero__grid" aria-hidden="true"></div>
+
+  <div class="service-hero__inner">
+    <p class="hero__kicker">{kicker}</p>
+
+    <h1 id="service-hero-heading" class="service-hero__title">
+      {title} <em>{titleAccent}</em>
+    </h1>
+
+    <p class="service-hero__lead">{lead}</p>
+
+    <ul class="service-hero__symptoms" aria-label="Typowe objawy tego problemu">
+      {symptoms.map((symptom) => (
+        <li>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          {symptom}
+        </li>
+      ))}
+    </ul>
+
+    <a class="btn-primary" href={ctaHref}>
+      {ctaLabel}
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .service-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 152px 24px 88px;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 232, 150, 0.08) 0%, transparent 70%),
+      var(--bg-dark);
+  }
+  .service-hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 0%, transparent 75%);
+  }
+  .service-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  /* .hero__kicker jest zdefiniowany w HeroSection, ale to osobna strona — powielamy lekko tutaj */
+  .hero__kicker {
+    display: inline-flex;
+    align-items: center;
+    background: var(--accent-dim);
+    border: 1px solid var(--border-accent);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+  .service-hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.1rem, 4.6vw, 3.1rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 22px;
+  }
+  .service-hero__title em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--accent), #00c8ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .service-hero__lead {
+    font-size: 1.06rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+  .service-hero__symptoms {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .service-hero__symptoms li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.92rem;
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+  .service-hero__symptoms svg {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .service-hero { padding: 132px 20px 64px; }
+  }
+</style>

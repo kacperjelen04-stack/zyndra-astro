@@ -1,0 +1,82 @@
+---
+import Layout from "../layouts/Layout.astro";
+import QualifyingForm from "../components/forms/QualifyingForm.astro";
+---
+
+<Layout
+  title="Kontakt — bezpłatna konsultacja techniczna | Zyndra"
+  description="Opisz sytuację operacyjną — odpowiadam w ciągu 24h roboczych z konkretnym zakresem, nie z ogólnikami. Integracje BaseLinker, dane produktowe, opisy AI."
+>
+  <section class="contact-intro">
+    <div class="contact-intro__inner">
+      <p class="section-label">Kontakt</p>
+      <h1 class="section-title">Porozmawiajmy o Twoim systemie sprzedaży.</h1>
+      <p class="section-sub">
+        Nie musisz wiedzieć z góry, który obszar dokładnie potrzebujesz — formularz poniżej
+        pomaga to ustalić. Odpiszę w ciągu 24 godzin roboczych.
+      </p>
+
+      <dl class="contact-details">
+        <div>
+          <dt>E-mail</dt>
+          <dd><a href="mailto:kontakt@zyndra.pl">kontakt@zyndra.pl</a></dd>
+        </div>
+        <div>
+          <dt>Telefon</dt>
+          <dd><a href="tel:+48517118466">+48 517 118 466</a></dd>
+        </div>
+        <div>
+          <dt>Lokalizacja</dt>
+          <dd>Jasło / Rzeszów — zdalnie cała Polska</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <QualifyingForm
+    title="Opisz swoją sytuację"
+    subtitle="Im więcej konkretów, tym szybciej dostaniesz sensowną odpowiedź zamiast pytań doprecyzowujących."
+  />
+</Layout>
+
+<style>
+  .contact-intro {
+    padding: 152px 24px 40px;
+    text-align: center;
+  }
+  .contact-intro__inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .contact-intro .section-title { margin-bottom: 12px; }
+  .contact-intro .section-sub { margin: 0 auto; }
+
+  .contact-details {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .contact-details dt {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .contact-details dd {
+    font-size: 0.95rem;
+    color: var(--text-main);
+  }
+  .contact-details a { transition: color 0.2s ease; }
+  .contact-details a:hover { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .contact-intro { padding: 132px 20px 24px; }
+    .contact-details { gap: 24px; }
+  }
+</style>

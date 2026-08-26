@@ -1,0 +1,151 @@
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero__grid" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <p class="hero__kicker">Automatyzacja e-commerce dla firm B2B</p>
+
+    <h1 id="hero-heading" class="hero__title">
+      Ręczna synchronizacja danych <em>kosztuje więcej niż jej automatyzacja.</em>
+    </h1>
+
+    <p class="hero__lead">
+      Projektuję i wdrażam integracje między BaseLinkerem, systemami ERP i marketplace'ami,
+      które eliminują ręczne aktualizacje stanów, pomyłki w zamówieniach i godziny pracy
+      zespołu tracone na powtarzalne zadania.
+    </p>
+
+    <div class="hero__cta">
+      <a class="btn-primary" href="/kontakt">
+        Umów techniczną konsultację
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path
+            d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+      <a class="btn-outline" href="#obszary">Zobacz obszary wdrożeń</a>
+    </div>
+
+    <dl class="hero__stats">
+      <div class="hero__stat">
+        <dt>Obszary wdrożeń</dt>
+        <dd>3</dd>
+      </div>
+      <div class="hero__stat">
+        <dt>Ręcznych aktualizacji stanów po wdrożeniu</dt>
+        <dd>0</dd>
+      </div>
+      <div class="hero__stat">
+        <dt>Czas pierwszej odpowiedzi technicznej</dt>
+        <dd>24h</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 168px 24px 96px;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 232, 150, 0.08) 0%, transparent 70%),
+      var(--bg-dark);
+  }
+
+  .hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 0%, transparent 75%);
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .hero__kicker {
+    display: inline-flex;
+    align-items: center;
+    background: var(--accent-dim);
+    border: 1px solid var(--border-accent);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+  }
+
+  .hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 5.4vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  .hero__title em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--accent), #00c8ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero__lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 620px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .hero__cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero__stats {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-top: 64px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+  }
+  .hero__stat {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 4px;
+  }
+  .hero__stat dd {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+  .hero__stat dt {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    max-width: 190px;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 140px 20px 72px; }
+    .hero__cta a { width: 100%; justify-content: center; }
+    .hero__stats { gap: 28px; }
+  }
+</style>

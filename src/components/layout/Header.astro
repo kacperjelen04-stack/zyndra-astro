@@ -1,0 +1,306 @@
+---
+import { mainNav } from "../../config/nav";
+const navLinks = mainNav.filter((link) => link.enabled);
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="/" class="logo" aria-label="Zyndra — strona główna">
+      <span class="logo-mark" aria-hidden="true"></span>
+      Zyndra
+    </a>
+
+    <nav aria-label="Nawigacja główna">
+      <ul class="nav-links" id="navLinks">
+        {navLinks.map((link) => {
+          const children = link.children?.filter((c) => c.enabled) ?? [];
+          if (children.length === 0) {
+            return (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            );
+          }
+          return (
+            <li class="nav-item nav-item--dropdown">
+              <button
+                class="nav-dropdown-trigger"
+                type="button"
+                aria-expanded="false"
+                aria-haspopup="true"
+              >
+                {link.label}
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div class="nav-dropdown-panel">
+                <a class="nav-dropdown-panel__overview" href={link.href}>
+                  Cały dział
+                  <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+                <ul>
+                  {children.map((child) => {
+                    const subChildren = child.children?.filter((c) => c.enabled) ?? [];
+                    
+                    if (subChildren.length === 0) {
+                      return <li><a href={child.href}>{child.label}</a></li>;
+                    }
+
+                    return (
+                      <li class="nav-item--submenu">
+                        <a href={child.href} class="has-submenu-trigger">
+                          {child.label}
+                          <svg class="submenu-arrow" width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                            <path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </a>
+                        <ul class="nav-submenu-panel">
+                          {/* Ekstra link na mobilki, żeby dało się wejść w kategorię po rozwinięciu */}
+                          <li class="mobile-overview"><a href={child.href}>Przejdź do: {child.label}</a></li>
+                          {subChildren.map((subChild) => (
+                            <li><a href={subChild.href}>{subChild.label}</a></li>
+                          ))}
+                        </ul>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </li>
+          );
+        })}
+        <li>
+          <a class="btn-nav" href="/kontakt">Umów konsultację</a>
+        </li>
+      </ul>
+    </nav>
+
+    <button
+      class="hamburger"
+      id="hamburgerBtn"
+      type="button"
+      aria-label="Otwórz menu"
+      aria-expanded="false"
+      aria-controls="navLinks"
+    >
+      <svg class="icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+      <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" hidden>
+        <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<style is:global>
+.hamburger svg[hidden] {
+  display: none !important;
+}
+  /* --- GŁÓWNE REGUŁY --- */
+  .nav-dropdown-panel,
+  .nav-dropdown-panel ul {
+    overflow: visible !important;
+  }
+
+  .nav-item--submenu {
+    position: relative; 
+  }
+  
+  .has-submenu-trigger {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-submenu-panel {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+
+  .nav-submenu-panel a {
+    display: block;
+    padding: 0.6rem 1.2rem;
+    color: #a1a1aa;
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+    font-size: 0.9rem;
+  }
+
+  .nav-submenu-panel a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* --- DESKTOP (od 1024px w górę) --- */
+  @media (min-width: 1024px) {
+    .nav-submenu-panel {
+      position: absolute;
+      top: -5px; 
+      left: 100%; 
+      background: #121419;
+      min-width: 250px;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(10px);
+      transition: all 0.2s ease;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+      z-index: 9999;
+      pointer-events: none;
+    }
+    
+    .nav-item--submenu:hover > .nav-submenu-panel {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .mobile-overview {
+      display: none; 
+    }
+  }
+
+  /* --- MOBILE (poniżej 1024px) --- */
+  @media (max-width: 1023px) {
+    /* Ustawiamy pełną wysokość menu i scrollowanie */
+    .nav-links.is-open {
+      display: flex !important;
+      flex-direction: column;
+      height: calc(100dvh - 70px); /* 70px to orientacyjna wysokość górnego paska z logo */
+      overflow-y: auto; 
+      padding-bottom: 2rem;
+    }
+
+    /* Popychamy przycisk "Umów konsultację" na dół */
+    .nav-links > li:last-child {
+      margin-top: auto; 
+      padding-top: 2rem;
+    }
+
+    .nav-links .btn-nav {
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Wygląd rozwijanego 3 poziomu */
+    .nav-submenu-panel {
+      display: none; 
+      background: rgba(0, 0, 0, 0.2); 
+      border-left: 1px solid #3f3f46;
+      margin-left: 1rem;
+      margin-top: 0.5rem;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .nav-item--submenu.is-open-submenu > .nav-submenu-panel {
+      display: block;
+    }
+
+    .nav-item--submenu.is-open-submenu > .has-submenu-trigger .submenu-arrow {
+      transform: rotate(90deg);
+    }
+    
+    .submenu-arrow {
+      transition: transform 0.2s ease;
+    }
+
+    .mobile-overview > a {
+      color: #fff !important;
+      font-weight: 600;
+      border-bottom: 1px solid #27272a;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.8rem;
+    }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById("hamburgerBtn");
+  const links = document.getElementById("navLinks");
+  const iconOpen = btn?.querySelector(".icon-open");
+  const iconClose = btn?.querySelector(".icon-close");
+
+  function setMenuState(open: boolean) {
+    links?.classList.toggle("is-open", open);
+    btn?.setAttribute("aria-expanded", String(open));
+    btn?.setAttribute("aria-label", open ? "Zamknij menu" : "Otwórz menu");
+    iconOpen?.toggleAttribute("hidden", open);
+    iconClose?.toggleAttribute("hidden", !open);
+  }
+
+  btn?.addEventListener("click", () => {
+    setMenuState(!links?.classList.contains("is-open"));
+  });
+
+  links?.querySelectorAll(":scope > li > a").forEach((link) => {
+    link.addEventListener("click", () => setMenuState(false));
+  });
+
+  const dropdowns = document.querySelectorAll<HTMLLIElement>(".nav-item--dropdown");
+
+  function closeAllDropdowns(except?: HTMLLIElement) {
+    dropdowns.forEach((dd) => {
+      if (dd === except) return;
+      dd.classList.remove("is-open");
+      dd.querySelector(".nav-dropdown-trigger")?.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  dropdowns.forEach((dropdown) => {
+    const trigger = dropdown.querySelector<HTMLButtonElement>(".nav-dropdown-trigger");
+    trigger?.addEventListener("click", () => {
+      const willOpen = !dropdown.classList.contains("is-open");
+      closeAllDropdowns();
+      dropdown.classList.toggle("is-open", willOpen);
+      trigger.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    dropdown.querySelectorAll(".nav-dropdown-panel a").forEach((link) => {
+      if (!link.classList.contains('has-submenu-trigger')) {
+        link.addEventListener("click", () => {
+          closeAllDropdowns();
+          setMenuState(false);
+        });
+      }
+    });
+  });
+
+  // OBSŁUGA TRZECIEGO POZIOMU NA TELEFONACH (Z AKORDEONEM)
+  const submenuTriggers = document.querySelectorAll('.has-submenu-trigger');
+  submenuTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', (e) => {
+      if (window.innerWidth < 1024) {
+        e.preventDefault(); 
+        const parent = trigger.closest('.nav-item--submenu');
+        
+        // Zwijamy wszystkie inne rozwinięte listy trzeciego poziomu
+        document.querySelectorAll('.nav-item--submenu.is-open-submenu').forEach((openSubmenu) => {
+          if (openSubmenu !== parent) {
+            openSubmenu.classList.remove('is-open-submenu');
+          }
+        });
+
+        // Otwieramy/zamykamy klikniętą listę
+        parent?.classList.toggle('is-open-submenu');
+      }
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!(e.target instanceof Node)) return;
+    const clickedInsideDropdown = Array.from(dropdowns).some((dd) => dd.contains(e.target as Node));
+    if (!clickedInsideDropdown) closeAllDropdowns();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAllDropdowns();
+  });
+</script>

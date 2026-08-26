@@ -1,0 +1,40 @@
+---
+export interface Props {
+  title: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const { title, ctaLabel = "Umów techniczną konsultację", ctaHref = "/kontakt" } = Astro.props;
+---
+
+<section class="dept-cta">
+  <div class="dept-cta__inner">
+    <h2 class="dept-cta__title">{title}</h2>
+    <a class="btn-primary" href={ctaHref}>
+      {ctaLabel}
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3.5 8H12.5M12.5 8L8.5 4M12.5 8L8.5 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  .dept-cta {
+    padding: 56px 24px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .dept-cta__inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .dept-cta__title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+</style>

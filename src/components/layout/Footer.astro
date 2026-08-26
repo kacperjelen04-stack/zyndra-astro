@@ -1,0 +1,187 @@
+---
+// Importujemy ZAKTUALIZOWANĄ drabinkę (żeby nie wywaliło błędu undefined)
+import { mainNav, ofertaChildren, problemyChildren, footerExtra } from "../../config/nav";
+
+const ofertaLinks = ofertaChildren.filter((l) => l.enabled);
+// Bierzemy tylko 5 pierwszych problemów, żeby kolumna nie była za długa (reszta pod linkiem "Wszystkie")
+const problemyLinks = problemyChildren.filter((l) => l.enabled).slice(0, 5); 
+const extraLinks = footerExtra.filter((l) => l.enabled);
+const firmaLinks = mainNav.filter((l) => l.enabled && l.href !== "/oferta" && l.href !== "/problemy");
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    
+    <!-- KOLUMNA 1: Marka i Opis -->
+    <div class="site-footer__col site-footer__col--brand">
+      <a href="/" class="logo logo--sm">
+        <span class="logo-mark" aria-hidden="true"></span>
+        Zyndra
+      </a>
+      <p class="site-footer__desc">
+        E-commerce bez ręcznej roboty. Tworzymy integracje i automatyzacje, które pomagają skalować sprzedaż.
+      </p>
+    </div>
+
+    <!-- KOLUMNA 2: Oferta -->
+    <div class="site-footer__col">
+      <p class="site-footer__heading">Usługi</p>
+      <ul class="site-footer__links">
+        {ofertaLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- KOLUMNA 3: Rozwiązania -->
+    <div class="site-footer__col">
+      <p class="site-footer__heading">Rozwiązania</p>
+      <ul class="site-footer__links">
+        {problemyLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+        <li><a href="/problemy" class="site-footer__more">Wszystkie problemy &rarr;</a></li>
+      </ul>
+    </div>
+
+    <!-- KOLUMNA 4: Firma i Kontakt -->
+    <div class="site-footer__col">
+      <p class="site-footer__heading">Firma</p>
+      <ul class="site-footer__links">
+        {firmaLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+        {extraLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    
+  </div>
+
+  <div class="site-footer__bottom">
+    <p class="site-footer__copy">© {year} Zyndra. Jasło / Rzeszów.</p>
+    <div class="site-footer__legal">
+      <a href="/polityka-prywatnosci">Polityka prywatności</a>
+      <a href="/polityka-cookies">Polityka cookies</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Główne tło i fonty */
+  .site-footer {
+    padding: 4rem 2rem 2rem;
+    background: #0f1115; /* Ciemny, elegancki motyw */
+    color: #a1a1aa;
+    font-size: 0.95rem;
+  }
+
+  /* Grid: 4 kolumny, pierwsza jest 2x szersza od pozostałych */
+  .site-footer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr; 
+    gap: 3rem;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 3rem;
+  }
+
+  /* Wygląd kolumny z logo */
+  .site-footer__col--brand .logo {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .site-footer__desc {
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  /* Nagłówki kolumn */
+  .site-footer__heading {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Listy linków */
+  .site-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .site-footer__links a {
+    color: #a1a1aa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .site-footer__links a:hover {
+    color: #fff;
+  }
+
+  .site-footer__more {
+    color: #3b82f6 !important; /* Lekki niebieski akcent */
+    margin-top: 0.5rem;
+    display: inline-block;
+    font-weight: 500;
+  }
+
+  /* Dolny pasek z copyright i polityką */
+  .site-footer__bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .site-footer__legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .site-footer__legal a {
+    color: #a1a1aa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .site-footer__legal a:hover {
+    color: #fff;
+  }
+
+  /* Na telefonach (mobile) zwijamy wszystko w jedną kolumnę */
+  @media (max-width: 768px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    
+    .site-footer__desc {
+      max-width: 100%;
+    }
+
+    .site-footer__bottom {
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+</style>

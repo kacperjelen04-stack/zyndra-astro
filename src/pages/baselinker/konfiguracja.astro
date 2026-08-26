@@ -1,0 +1,73 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import DeptHero from "../../components/baselinker/DeptHero.astro";
+import FlowDiagram from "../../components/baselinker/FlowDiagram.astro";
+import BulletSection from "../../components/baselinker/BulletSection.astro";
+import CaseStudyPlaceholder from "../../components/baselinker/CaseStudyPlaceholder.astro";
+import CTABanner from "../../components/baselinker/CTABanner.astro";
+import RelatedLinks from "../../components/baselinker/RelatedLinks.astro";
+
+const diagram = `KONFIGURACJA BASELINKER
+        │
+        ▼
+  ANALIZA FIRMY
+        │
+        ▼
+USTALENIE ŹRÓDEŁ
+        │
+   ┌────┼────┐
+   ▼    ▼    ▼
+MAGAZYNY KATALOG KONTA
+        │
+        ▼
+ SYNCHRONIZACJA
+        │
+        ▼
+      TESTY
+        │
+        ▼
+ GOTOWY SYSTEM`;
+---
+
+<Layout
+  title="Konfiguracja BaseLinker | Zyndra"
+  description="Poprawna konfiguracja BaseLinker od zera: analiza źródeł danych, magazyny, katalog, integracje, synchronizacja i testy przed uruchomieniem."
+>
+  <DeptHero
+    breadcrumb="BaseLinker → Konfiguracja"
+    title="BaseLinker, który ktoś musi wreszcie poprawnie skonfigurować."
+    quote="Mam BaseLinkera, ale ktoś musi mi go poprawnie skonfigurować."
+    lead="Samo posiadanie konta BaseLinker nie rozwiązuje niczego — dopiero poprawna konfiguracja źródeł danych, magazynów i synchronizacji sprawia, że system faktycznie pilnuje sprzedaży za Ciebie."
+  />
+
+  <FlowDiagram diagram={diagram} />
+
+  <BulletSection
+    label="Zakres"
+    title="Co obejmuje konfiguracja"
+    numbered={true}
+    items={[
+      "Analiza obecnej konfiguracji",
+      "Magazyny",
+      "Katalog",
+      "Integracje",
+      "Synchronizacja",
+      "Automatyzacje",
+      "Testy",
+      "Dokumentacja konfiguracji",
+    ]}
+  />
+
+  <CaseStudyPlaceholder />
+
+  <CTABanner title="Chcesz, żeby BaseLinker wreszcie działał tak, jak powinien?" />
+
+  <RelatedLinks
+    links={[
+      { href: "/baselinker/", label: "← Cały dział BaseLinker" },
+      { href: "/baselinker/magazyny/", label: "Magazyny" },
+      { href: "/baselinker/katalog-produktow/", label: "Katalog produktów" },
+      { href: "/baselinker/mapowanie/", label: "Mapowanie" },
+    ]}
+  />
+</Layout>

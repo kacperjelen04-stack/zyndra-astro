@@ -1,0 +1,26 @@
+---
+import LayoutUsluga from '../../../components/layout/LayoutUsluga.astro';
+---
+
+<LayoutUsluga 
+  title="Automatyzacja przepływu danych produktowych | Zyndra"
+  description="W pełni bezobsługowe procesy aktualizacji baz asortymentowych. Cron, harmonogramy zadań i natychmiastowa aktualizacja stanów i cen."
+  kicker="Dane Produktowe"
+  h1="Pełna <em>automatyzacja przepływu</em> danych"
+  lead="Przestań ręcznie pobierać cenniki z FTP czy skrzynek mailowych. Wdrażamy systemy, które same nasłuchują zmian u Twoich dostawców i aktualizują sklep w tle."
+>
+
+  <h2>Dane, które aktualizują się same</h2>
+  <p>Zarządzanie ofertą pochodzącą od wielu dostawców wymaga żelaznej dyscypliny, której nie da się utrzymać ludzkimi rękami. Konfigurujemy połączenia i piszemy aplikacje pośredniczące, które systematycznie (lub na żądanie via Webhooki) zaczytują, konsolidują i wgrywają najświeższe dane do Twojego silnika e-commerce.</p>
+
+  <!-- MIEJSCE NA ZDJĘCIE: Wizualizacja procesu (np. schemat blokowy) lub panel z aktywnymi zadaniami CRON z zielonymi statusami wywołań -->
+  <img src="/images/dowody/dane-harmonogram-cron.webp" alt="Widok harmonogramu automatycznych wywołań procesów aktualizacji bazy" class="proof-image" loading="lazy" />
+
+  <h3>Zasady automatycznego działania:</h3>
+  <ul>
+    <li><strong>Wyzwalacze czasowe (Cron Jobs):</strong> Ustalanie precyzyjnych harmonogramów pobierania plików od dostawców (np. stany co 15 minut, pełen cennik o 3:00 w nocy).</li>
+    <li><strong>Rozwiązywanie konfliktów danych:</strong> Logika decydująca co zrobić, gdy ten sam produkt EAN pojawia się w plikach od 3 różnych hurtowni (np. system wybiera tego dostawcę, u którego cena zakupu jest najniższa).</li>
+    <li><strong>Powiadomienia o błędach:</strong> Natychmiastowe alerty na Slack/Email, gdy hurtownia zmieni strukturę pliku lub gdy serwer FTP dostawcy nie odpowiada.</li>
+  </ul>
+
+</LayoutUsluga>

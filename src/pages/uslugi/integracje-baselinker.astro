@@ -1,0 +1,25 @@
+---
+// Stara, pojedyncza strona o integracjach BaseLinker została zastąpiona
+// przez pełny dział /baselinker/ (9 osobnych podstron, zgodnie z
+// dokumentacją architektury). Ten plik zostaje jako przekierowanie,
+// żeby ewentualne zapisane/udostępnione linki do starego URL-a nadal
+// prowadziły w dobre miejsce.
+import Layout from "../../layouts/Layout.astro";
+const target = "/baselinker/";
+---
+
+<Layout
+  title="Przekierowanie… | Zyndra"
+  description="Ta strona została przeniesiona."
+  noindex={true}
+>
+  <meta http-equiv="refresh" content={`0; url=${target}`} />
+  <section class="redirect">
+    <p>Ta strona została przeniesiona. Jeśli nie nastąpiło automatyczne przekierowanie, <a href={target}>kliknij tutaj</a>.</p>
+  </section>
+</Layout>
+
+<style>
+  .redirect { padding: 200px 24px; text-align: center; color: var(--text-muted); }
+  .redirect a { color: var(--accent); }
+</style>

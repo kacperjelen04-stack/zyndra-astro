@@ -1,0 +1,65 @@
+---
+export interface Props {
+  breadcrumb: string;
+  title: string;
+  quote?: string;
+  lead?: string;
+}
+
+const { breadcrumb, title, quote, lead } = Astro.props;
+---
+
+<section class="dept-hero">
+  <div class="dept-hero__inner">
+    <p class="dept-hero__breadcrumb">{breadcrumb}</p>
+    <h1 class="dept-hero__title">{title}</h1>
+    {quote && <p class="dept-hero__quote">„{quote}”</p>}
+    {lead && <p class="dept-hero__lead">{lead}</p>}
+  </div>
+</section>
+
+<style>
+  .dept-hero {
+    padding: 152px 24px 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dept-hero__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .dept-hero__breadcrumb {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .dept-hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 4.2vw, 2.7rem);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 18px;
+  }
+  .dept-hero__quote {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text-main);
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 18px;
+  }
+  .dept-hero__lead {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 640px) {
+    .dept-hero { padding: 132px 20px 40px; }
+  }
+</style>

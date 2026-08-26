@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import DeptHero from "../../components/baselinker/DeptHero.astro";
+import FlowDiagram from "../../components/baselinker/FlowDiagram.astro";
+import BulletSection from "../../components/baselinker/BulletSection.astro";
+import CaseStudyPlaceholder from "../../components/baselinker/CaseStudyPlaceholder.astro";
+import CTABanner from "../../components/baselinker/CTABanner.astro";
+import RelatedLinks from "../../components/baselinker/RelatedLinks.astro";
+
+const diagram = `  BASELINKER
+      │
+      ▼
+   ALLEGRO
+      │
+  ┌───┼──────────┐
+  ▼   ▼          ▼
+ API OFERTY  ZAMÓWIENIA
+  │   │          │
+  ▼   ▼          ▼
+CENY STANY   STATUSY`;
+---
+
+<Layout
+  title="BaseLinker + Allegro — konfiguracja integracji | Zyndra"
+  description="Poprawna integracja BaseLinker z Allegro: autoryzacja API, synchronizacja ofert, cen, stanów i statusów zamówień."
+>
+  <DeptHero
+    breadcrumb="BaseLinker → Allegro"
+    title="BaseLinker i Allegro, poprawnie skonfigurowane."
+    quote="Mam Allegro i BaseLinkera. Jak to poprawnie skonfigurować?"
+  />
+
+  <FlowDiagram diagram={diagram} />
+
+  <BulletSection
+    label="Zakres"
+    title="Co obejmuje integracja"
+    items={[
+      "Autoryzacja konta przez API Allegro",
+      "Synchronizacja ofert",
+      "Aktualizacja cen",
+      "Aktualizacja stanów",
+      "Obsługa zamówień",
+      "Statusy przesyłek",
+    ]}
+  />
+
+  <CaseStudyPlaceholder />
+
+  <CTABanner title="Allegro spięte z BaseLinkerem bez ręcznej roboty" />
+
+  <RelatedLinks
+    title="Potrzebujesz innego marketplace?"
+    links={[
+      { href: "/baselinker/erli/", label: "ERLI" },
+      { href: "/baselinker/empik/", label: "Empik" },
+      { href: "/baselinker/shoper/", label: "Shoper" },
+    ]}
+  />
+</Layout>

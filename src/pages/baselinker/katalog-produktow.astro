@@ -1,0 +1,70 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import DeptHero from "../../components/baselinker/DeptHero.astro";
+import FlowDiagram from "../../components/baselinker/FlowDiagram.astro";
+import BulletSection from "../../components/baselinker/BulletSection.astro";
+import CaseStudyPlaceholder from "../../components/baselinker/CaseStudyPlaceholder.astro";
+import CTABanner from "../../components/baselinker/CTABanner.astro";
+import RelatedLinks from "../../components/baselinker/RelatedLinks.astro";
+
+const diagram = `KATALOG PRODUKTÓW
+        │
+        ▼
+  DANE WEJŚCIOWE
+        │
+   ┌────┼────┐
+   ▼    ▼    ▼
+ CSV  SHOPER HURTOWNIA
+   │    │    │
+   └────┼────┘
+        ▼
+     KATALOG
+        │
+   ┌────┼────┐
+   ▼    ▼    ▼
+ SKU   EAN  WARIANTY
+        │
+        ▼
+   MARKETPLACE`;
+---
+
+<Layout
+  title="Katalog produktów w BaseLinker | Zyndra"
+  description="Uporządkowany katalog produktów jako podstawa integracji z marketplace'ami — duplikaty, brakujące EAN, złe SKU i warianty pod kontrolą."
+>
+  <DeptHero
+    breadcrumb="BaseLinker → Katalog produktów"
+    title="Katalog produktów, który wreszcie ma sens w każdym kanale."
+    lead="Marketplace'y odrzucają lub obniżają widoczność ofert z niekompletnymi danymi. Zanim cokolwiek zsynchronizujesz, katalog musi mieć spójne SKU, EAN i warianty — niezależnie od tego, skąd pochodzą dane wejściowe."
+  />
+
+  <FlowDiagram diagram={diagram} />
+
+  <BulletSection
+    label="Typowe problemy"
+    title="Co najczęściej psuje katalog"
+    items={[
+      "Duplikaty produktów",
+      "Brak EAN",
+      "Złe SKU",
+      "Warianty niespójne między kanałami",
+      "Brakujące zdjęcia",
+      "Błędne parametry",
+      "Złe kategorie",
+      "Niekompletne dane",
+    ]}
+  />
+
+  <CaseStudyPlaceholder />
+
+  <CTABanner title="Katalog produktów gotowy do sprzedaży wielokanałowej" />
+
+  <RelatedLinks
+    links={[
+      { href: "/baselinker/", label: "← Cały dział BaseLinker" },
+      { href: "/baselinker/mapowanie/", label: "Mapowanie" },
+      { href: "/baselinker/magazyny/", label: "Magazyny" },
+      { href: "/baselinker/shoper/", label: "Shoper" },
+    ]}
+  />
+</Layout>

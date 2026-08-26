@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Polityka prywatności | Zyndra"
+  description="Polityka prywatności serwisu zyndra.pl — zasady przetwarzania danych osobowych."
+  noindex={true}
+>
+  <div class="legal-content">
+    <h1>Polityka prywatności</h1>
+    <p class="updated">Ostatnia aktualizacja: sierpień 2026</p>
+
+    <h2>1. Administrator danych</h2>
+    <p>Administratorem Twoich danych osobowych jest Zyndra (Kacper Jeleń), adres: Rzeszów, e-mail: kontakt@zyndra.pl.</p>
+
+    <h2>2. Jakie dane zbieramy</h2>
+    <p>Za pośrednictwem formularza kwalifikującego zbieramy następujące dane:</p>
+    <ul>
+      <li>Imię i nazwisko</li>
+      <li>Nazwa firmy (opcjonalnie)</li>
+      <li>Numer telefonu</li>
+      <li>Adres e-mail</li>
+      <li>Obszar zainteresowania, orientacyjna wielkość bazy produktowej oraz używane systemy — dane niezbędne do oceny zakresu zapytania</li>
+      <li>Treść wiadomości i dodatkowy kontekst zapytania</li>
+    </ul>
+    <p>Strona korzysta również z plików cookie — szczegóły w <a href="/polityka-cookies">Polityce cookies</a>.</p>
+
+    <h2>3. Cel i podstawa prawna przetwarzania</h2>
+    <p>Dane podane w formularzu przetwarzamy w celu udzielenia odpowiedzi na zapytanie i ewentualnego nawiązania współpracy — podstawą prawną jest art. 6 ust. 1 lit. b RODO (niezbędność do wykonania umowy lub podjęcia działań przed jej zawarciem) oraz art. 6 ust. 1 lit. a RODO (Twoja zgoda wyrażona przy wysyłaniu formularza).</p>
+    <p>Dane analityczne zbierane przez Google Analytics 4 przetwarzane są na podstawie Twojej zgody wyrażonej w banerze cookie.</p>
+
+    <h2>4. Okres przechowywania danych</h2>
+    <p>Dane z formularza przechowujemy przez okres niezbędny do obsługi zapytania i ewentualnej współpracy, nie dłużej niż 3 lata od ostatniego kontaktu. Dane analityczne przechowywane są zgodnie z konfiguracją Google Analytics (domyślnie 14 miesięcy).</p>
+
+    <h2>5. Odbiorcy danych</h2>
+    <p>Dane nie są sprzedawane ani przekazywane podmiotom trzecim w celach marketingowych. Dane analityczne przekazywane są do Google LLC w ramach usługi Google Analytics 4 — Google przetwarza je zgodnie ze swoją polityką prywatności.</p>
+
+    <h2>6. Twoje prawa</h2>
+    <p>Przysługują Ci następujące prawa:</p>
+    <ul>
+      <li>Prawo dostępu do danych</li>
+      <li>Prawo do sprostowania danych</li>
+      <li>Prawo do usunięcia danych ("prawo do bycia zapomnianym")</li>
+      <li>Prawo do ograniczenia przetwarzania</li>
+      <li>Prawo do przenoszenia danych</li>
+      <li>Prawo do cofnięcia zgody w dowolnym momencie</li>
+      <li>Prawo do wniesienia skargi do Prezesa UODO (uodo.gov.pl)</li>
+    </ul>
+    <p>Aby skorzystać z powyższych praw, skontaktuj się pod adresem: kontakt@zyndra.pl</p>
+
+    <h2>7. Dobrowolność podania danych</h2>
+    <p>Podanie danych w formularzu jest dobrowolne, jednak niezbędne do udzielenia odpowiedzi na zapytanie.</p>
+
+    <h2>8. Zmiany polityki</h2>
+    <p>Zastrzegamy prawo do wprowadzania zmian w niniejszej polityce. O istotnych zmianach poinformujemy poprzez aktualizację daty na górze dokumentu.</p>
+  </div>
+</Layout>
+
+<style>
+  .legal-content { max-width: 800px; margin: 0 auto; padding: 148px 24px 96px; }
+  .legal-content h1 { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  .legal-content .updated { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 48px; }
+  .legal-content h2 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; margin: 36px 0 12px; color: var(--text-main); }
+  .legal-content p, .legal-content li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 12px; }
+  .legal-content ul { padding-left: 20px; margin-bottom: 12px; }
+  .legal-content a { color: var(--accent); }
+</style>

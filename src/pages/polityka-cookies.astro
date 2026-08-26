@@ -1,0 +1,94 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Polityka cookies | Zyndra"
+  description="Polityka cookies serwisu zyndra.pl — jakich plików cookie używamy i jak zarządzać zgodą."
+  noindex={true}
+>
+  <div class="legal-content">
+    <h1>Polityka cookies</h1>
+    <p class="updated">Ostatnia aktualizacja: sierpień 2026</p>
+
+    <h2>Czym są pliki cookie</h2>
+    <p>Pliki cookie to małe pliki tekstowe zapisywane na Twoim urządzeniu podczas odwiedzania strony. Pozwalają na zapamiętanie Twoich preferencji i zbieranie danych statystycznych.</p>
+
+    <h2>Jakich cookies używamy</h2>
+    <table class="cookie-table">
+      <tr>
+        <th>Typ</th>
+        <th>Nazwa</th>
+        <th>Cel</th>
+        <th>Czas</th>
+      </tr>
+      <tr>
+        <td><strong>Niezbędne</strong></td>
+        <td>cookie_consent</td>
+        <td>Zapamiętanie Twojej zgody na cookies</td>
+        <td>12 miesięcy</td>
+      </tr>
+      <tr>
+        <td><strong>Analityczne</strong></td>
+        <td>_ga, _ga_*</td>
+        <td>Google Analytics 4 — statystyki ruchu na stronie (anonimowe)</td>
+        <td>13 miesięcy</td>
+      </tr>
+      <tr>
+        <td><strong>Reklamowe</strong></td>
+        <td>_gcl_au</td>
+        <td>Google Ads / Meta — śledzenie konwersji z reklam</td>
+        <td>3 miesiące</td>
+      </tr>
+    </table>
+
+    <h2>Cookies niezbędne</h2>
+    <p>Niezbędne do działania strony i zapamiętania Twoich preferencji dotyczących cookies. Nie wymagają zgody i nie można ich wyłączyć.</p>
+
+    <h2>Cookies analityczne i reklamowe</h2>
+    <p>Używamy Google Analytics 4 do analizy ruchu na stronie oraz narzędzi reklamowych (Google Ads, Meta, LinkedIn) do mierzenia skuteczności kampanii. Są włączane wyłącznie po udzieleniu zgody w banerze cookie.</p>
+
+    <h2>Zarządzanie zgodą</h2>
+    <p>Możesz zmienić swoje preferencje dotyczące cookies w dowolnym momencie:</p>
+    <button
+      class="btn-manage"
+      onclick="localStorage.removeItem('cookie_consent'); window.location.href='/';"
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M2 8H14M2 4H14M2 12H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+      Zmień preferencje cookies
+    </button>
+
+    <h2>Jak wyłączyć cookies w przeglądarce</h2>
+    <p>Możesz również zarządzać cookies bezpośrednio w ustawieniach przeglądarki. Wyłączenie cookies analitycznych nie wpływa na działanie strony.</p>
+
+    <h2>Więcej informacji</h2>
+    <p>Szczegóły dotyczące przetwarzania danych osobowych znajdziesz w <a href="/polityka-prywatnosci">Polityce prywatności</a>. W sprawach dotyczących cookies możesz skontaktować się pod adresem: kontakt@zyndra.pl</p>
+  </div>
+</Layout>
+
+<style>
+  .legal-content { max-width: 800px; margin: 0 auto; padding: 148px 24px 96px; }
+  .legal-content h1 { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  .legal-content .updated { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 48px; }
+  .legal-content h2 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; margin: 36px 0 12px; color: var(--text-main); }
+  .legal-content p, .legal-content li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 12px; }
+  .legal-content ul { padding-left: 20px; margin-bottom: 12px; }
+  .legal-content a { color: var(--accent); }
+
+  .cookie-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 0.88rem; }
+  .cookie-table th {
+    text-align: left; padding: 10px 12px; background: var(--bg-card);
+    color: var(--text-main); font-weight: 600; border-bottom: 1px solid var(--border);
+  }
+  .cookie-table td { padding: 10px 12px; color: var(--text-muted); border-bottom: 1px solid var(--border); vertical-align: top; }
+
+  .btn-manage {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 8px;
+    padding: 10px 20px; border-radius: 8px; background: var(--accent-dim);
+    border: 1px solid var(--border-accent); color: var(--accent);
+    font-size: 0.9rem; font-weight: 600; font-family: var(--font-body);
+  }
+  .btn-manage:hover { background: var(--accent); color: #000; }
+</style>

@@ -1,0 +1,50 @@
+---
+export interface Props {
+  hint?: string;
+}
+
+const { hint = "Miejsce na przykładową realizację z tego obszaru — konkretny problem klienta, zakres wdrożenia i efekt." } = Astro.props;
+---
+
+<section class="case-slot">
+  <div class="case-slot__inner">
+    <p class="section-label">Case study</p>
+    <div class="case-slot__box">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5" />
+        <path d="M10 7V13M7 10H13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+      </svg>
+      <p>{hint}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .case-slot {
+    padding: 48px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .case-slot__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .case-slot__box {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 22px;
+    border: 1px dashed var(--border-accent);
+    border-radius: 10px;
+    background: transparent;
+  }
+  .case-slot__box svg {
+    color: var(--text-dim);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .case-slot__box p {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+</style>

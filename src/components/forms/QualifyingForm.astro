@@ -1,0 +1,379 @@
+---
+export interface Props {
+  service?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  service,
+  title = "Umów techniczną konsultację",
+  subtitle = "Odpowiedz na kilka pytań o obecnej sytuacji — odezwę się w ciągu 24h roboczych z konkretną propozycją zakresu, nie z ogólnikami.",
+} = Astro.props;
+
+const serviceOptions = [
+  "Integracje BaseLinker i synchronizacja stanów",
+  "Import i czyszczenie danych produktowych",
+  "Automatyczne opisy produktowe AI / SEO",
+  "Kilka obszarów naraz",
+  "Nie wiem jeszcze / potrzebuję doradztwa",
+];
+
+const catalogSizeOptions = [
+  { value: "do-1000", label: "do 1000 indeksów" },
+  { value: "1000-5000", label: "1000–5000 indeksów" },
+  { value: "powyzej-5000", label: "powyżej 5000 indeksów" },
+];
+
+const systemOptions = ["Shoper", "WooCommerce", "BaseLinker", "Subiekt GT", "Inne"];
+---
+
+<section class="qform" id="formularz" aria-labelledby="qform-heading">
+  <div class="qform__inner">
+    <div class="qform__intro">
+      <p class="section-label">Następny krok</p>
+      <h2 id="qform-heading" class="section-title">{title}</h2>
+      <p class="section-sub">{subtitle}</p>
+    </div>
+
+    <form class="qform__form" id="qualifyingForm" data-default-service={service ?? ""}>
+      <div class="qform-row">
+        <div class="qform-group">
+          <label for="qf-name">Imię i nazwisko *</label>
+          <input type="text" id="qf-name" name="name" placeholder="Jan Kowalski" required />
+        </div>
+        <div class="qform-group">
+          <label for="qf-company">Firma</label>
+          <input type="text" id="qf-company" name="company" placeholder="Firma sp. z o.o." />
+        </div>
+      </div>
+
+      <div class="qform-row">
+        <div class="qform-group">
+          <label for="qf-email">E-mail *</label>
+          <input type="email" id="qf-email" name="email" placeholder="jan@firma.pl" required />
+        </div>
+        <div class="qform-group">
+          <label for="qf-phone">Telefon *</label>
+          <input type="tel" id="qf-phone" name="phone" placeholder="500 000 000" required />
+        </div>
+      </div>
+
+      <div class="qform-group">
+        <label for="qf-service">Obszar zainteresowania *</label>
+        <select id="qf-service" name="service" required>
+          <option value="">— wybierz obszar —</option>
+          {serviceOptions.map((opt) => (
+            <option value={opt} selected={opt === service}>{opt}</option>
+          ))}
+        </select>
+      </div>
+
+      <fieldset class="qform-group">
+        <legend>Wielkość bazy produktowej *</legend>
+        <div class="choice-grid" role="radiogroup" aria-required="true">
+          {catalogSizeOptions.map((opt) => (
+            <label class="choice-chip">
+              <input type="radio" name="catalogSize" value={opt.value} required />
+              <span>{opt.label}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset class="qform-group">
+        <legend>Używane systemy * <span class="qform-hint">(zaznacz min. jeden)</span></legend>
+        <div class="choice-grid">
+          {systemOptions.map((sys) => (
+            <label class="choice-chip choice-chip--checkbox">
+              <input type="checkbox" name="systems" value={sys} />
+              <span>{sys}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div class="qform-group">
+        <label for="qf-message">Opisz sytuację</label>
+        <textarea id="qf-message" name="message" rows="4" placeholder="Co dziś sprawia najwięcej problemów, jakie systemy chcesz połączyć, orientacyjny termin..."></textarea>
+      </div>
+
+      <div class="qform-rodo">
+        <input type="checkbox" id="qf-rodo" name="rodo" required />
+        <label for="qf-rodo">
+          Wyrażam zgodę na przetwarzanie moich danych osobowych przez Zyndra (Kacper Jeleń) w celu
+          odpowiedzi na przesłane zapytanie, zgodnie z
+          <a href="/polityka-prywatnosci" target="_blank">Polityką prywatności</a>. Podanie danych jest dobrowolne. *
+        </label>
+      </div>
+
+      <button type="submit" class="btn-primary qform-submit">
+        Wyślij zapytanie
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M14 2L6.7 9.3M14 2L9.5 14L6.7 9.3M14 2L1.7 6.3L6.7 9.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <p class="qform-fineprint">* pola wymagane · odpowiadam wyłącznie na kompletne zapytania</p>
+      <div id="qformStatus" class="qform-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .qform {
+    padding: 96px 24px;
+    scroll-margin-top: 90px;
+  }
+  .qform__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .qform__intro { margin-bottom: 40px; }
+
+  .qform__form {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px;
+  }
+  .qform-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .qform-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+    border: none;
+  }
+  .qform-group legend {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0;
+    margin-bottom: 2px;
+  }
+  .qform-hint {
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--text-dim);
+  }
+  .qform-group label:not(.choice-chip) {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-family: var(--font-body);
+    appearance: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0, 232, 150, 0.12);
+  }
+  input::placeholder, textarea::placeholder { color: var(--text-dim); }
+  textarea { resize: vertical; min-height: 100px; }
+
+  .choice-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .choice-chip { cursor: pointer; }
+  .choice-chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .choice-chip span {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--bg-dark);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+  }
+  .choice-chip span:hover { border-color: var(--border-accent); color: var(--text-main); }
+  .choice-chip input:checked + span {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+    color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(0, 232, 150, 0.15);
+  }
+  .choice-chip input:focus-visible + span {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .qform-rodo {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .qform-rodo input {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-top: 3px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .qform-rodo label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    cursor: pointer;
+  }
+  .qform-rodo a { color: var(--accent); border-bottom: 1px solid var(--border-accent); }
+
+  .qform-submit { width: 100%; justify-content: center; }
+  .qform-fineprint {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: center;
+    margin-top: 12px;
+  }
+  .qform-status {
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 12px;
+    min-height: 22px;
+  }
+
+  @media (max-width: 640px) {
+    .qform__form { padding: 24px 20px; }
+    .qform-row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById("qualifyingForm") as HTMLFormElement | null;
+  const status = document.getElementById("qformStatus");
+
+  if (form) {
+    const defaultService = form.dataset.defaultService;
+    const serviceSelect = form.querySelector<HTMLSelectElement>("#qf-service");
+    if (defaultService && serviceSelect) {
+      serviceSelect.value = defaultService;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const originalContent = submitBtn?.innerHTML ?? "";
+
+      const setStatus = (msg: string, isError: boolean) => {
+        if (!status) return;
+        status.textContent = msg;
+        status.style.color = isError ? "#f87171" : "var(--accent)";
+      };
+
+      const name = (form.querySelector<HTMLInputElement>("#qf-name")?.value ?? "").trim();
+      const email = (form.querySelector<HTMLInputElement>("#qf-email")?.value ?? "").trim();
+      const phone = (form.querySelector<HTMLInputElement>("#qf-phone")?.value ?? "").trim();
+      const service = form.querySelector<HTMLSelectElement>("#qf-service")?.value ?? "";
+      const catalogSize = form.querySelector<HTMLInputElement>('input[name="catalogSize"]:checked')?.value ?? "";
+      const systems = Array.from(
+        form.querySelectorAll<HTMLInputElement>('input[name="systems"]:checked')
+      ).map((el) => el.value);
+      const rodo = form.querySelector<HTMLInputElement>("#qf-rodo")?.checked ?? false;
+
+      if (!name || !email || !phone || !service) {
+        setStatus("Wypełnij imię i nazwisko, e-mail, telefon oraz obszar zainteresowania.", true);
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setStatus("Podaj poprawny adres e-mail.", true);
+        return;
+      }
+      if (!/^[\d\s+\-]{7,15}$/.test(phone)) {
+        setStatus("Podaj poprawny numer telefonu.", true);
+        return;
+      }
+      if (!catalogSize) {
+        setStatus("Zaznacz wielkość bazy produktowej.", true);
+        return;
+      }
+      if (systems.length === 0) {
+        setStatus("Zaznacz przynajmniej jeden używany system.", true);
+        return;
+      }
+      if (!rodo) {
+        setStatus("Zaznacz zgodę na przetwarzanie danych osobowych.", true);
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "Wysyłanie...";
+      }
+
+      const payload = {
+        name,
+        company: form.querySelector<HTMLInputElement>("#qf-company")?.value ?? "",
+        email,
+        phone,
+        service,
+        catalogSize,
+        systems,
+        message: form.querySelector<HTMLTextAreaElement>("#qf-message")?.value ?? "",
+      };
+
+      try {
+        const res = await fetch("/mail.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (res.ok) {
+          form.reset();
+          setStatus("Zapytanie wysłane. Odezwę się w ciągu 24h roboczych.", false);
+
+          // Event konwersji do dataLayer — GTM/GA4/Ads/Meta/LinkedIn mogą go
+          // wykorzystać do rozróżniania typu i jakości leada (obszar, wielkość
+          // bazy, systemy), zamiast optymalizować pod samą liczbę zgłoszeń.
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "generate_lead",
+            lead_service: service,
+            lead_catalog_size: catalogSize,
+            lead_systems: systems.join(","),
+            lead_page: window.location.pathname,
+          });
+        } else {
+          throw new Error("Blad wysylki");
+        }
+      } catch {
+        setStatus("Coś poszło nie tak. Napisz bezpośrednio na kontakt@zyndra.pl.", true);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalContent;
+        }
+      }
+    });
+  }
+</script>

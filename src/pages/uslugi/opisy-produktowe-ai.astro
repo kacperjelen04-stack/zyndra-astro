@@ -1,0 +1,66 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceHero from "../../components/sections/ServiceHero.astro";
+import SolutionSection from "../../components/sections/SolutionSection.astro";
+import ProofSection from "../../components/sections/ProofSection.astro";
+import QualifyingForm from "../../components/forms/QualifyingForm.astro";
+
+const SERVICE = "Automatyczne opisy produktowe AI / SEO";
+---
+
+<Layout
+  title="Automatyczne opisy produktowe AI pod SEO | Zyndra"
+  description="Masowe generowanie unikalnych opisów produktowych dla sklepów z tysiącami indeksów. Dopasowane pod SEO i wymagania konkretnej platformy sprzedażowej."
+>
+  <ServiceHero
+    kicker="Opisy produktowe AI / SEO"
+    title="Tysiące indeksów i"
+    titleAccent="zero czasu na unikalne opisy."
+    lead="Skopiowany opis od producenta to duplicate content — Google i marketplace'y karzą go niższą pozycją. Ręczne pisanie unikalnych opisów dla tysięcy SKU nie jest realistyczne dla żadnego zespołu."
+    symptoms={[
+      "Opisy skopiowane od producenta powtarzają się w całej branży",
+      "Nowe produkty trafiają do sklepu bez opisu, bo nikt nie ma na to czasu",
+      "Generyczne opisy nie zawierają fraz, po których klienci faktycznie szukają",
+      "Aktualizacja opisów pod SEO oznacza tygodnie pracy copywritera",
+    ]}
+  />
+
+  <SolutionSection
+    title="Opisy generowane w skali całej bazy"
+    intro="Proces budowany na Twoich danych produktowych i wytycznych marki — nie uniwersalny generator, tylko dopasowany pipeline treści."
+    items={[
+      {
+        title: "Masowe generowanie opisów",
+        description:
+          "Automatyczne tworzenie unikalnych opisów na bazie danych produktowych (nazwa, parametry, kategoria) — dla całej bazy, nie pojedynczych SKU.",
+      },
+      {
+        title: "Dopasowanie pod SEO i platformę",
+        description:
+          "Struktura i słowa kluczowe dopasowane do tego, gdzie opis ląduje — własny sklep, Allegro i Google Shopping mają różne wymagania.",
+      },
+      {
+        title: "Spójny styl i ton marki",
+        description:
+          "Opisy generowane według ustalonych wytycznych brzmieniowych, nie przypadkowym, uniwersalnym tonem.",
+      },
+      {
+        title: "Wpięcie w proces importu",
+        description:
+          "Nowy produkt trafia do bazy razem z gotowym opisem — łączy się bezpośrednio z automatyzacją importu danych.",
+      },
+    ]}
+  />
+
+  <ProofSection
+    title="Co realnie się zmienia po wdrożeniu"
+    stats={[
+      { value: "0", label: "Duplicate content między Twoimi produktami" },
+      { value: "1000+", label: "Opisów możliwych do wygenerowania w jednym cyklu" },
+      { value: "24h", label: "Czas pierwszej odpowiedzi technicznej" },
+    ]}
+    note="Jakość i długość opisów ustalamy wspólnie na próbce produktów przed uruchomieniem pełnej bazy — żeby zobaczyć efekt, zanim zapadnie decyzja."
+  />
+
+  <QualifyingForm service={SERVICE} />
+</Layout>

@@ -1,0 +1,64 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import DeptHero from "../../components/baselinker/DeptHero.astro";
+import FlowDiagram from "../../components/baselinker/FlowDiagram.astro";
+import BulletSection from "../../components/baselinker/BulletSection.astro";
+import CaseStudyPlaceholder from "../../components/baselinker/CaseStudyPlaceholder.astro";
+import CTABanner from "../../components/baselinker/CTABanner.astro";
+import RelatedLinks from "../../components/baselinker/RelatedLinks.astro";
+
+const diagram = `MAGAZYNY BASELINKER
+        │
+        ▼
+SKĄD POBIERAMY STANY?
+        │
+   ┌────┼────┐
+   ▼    ▼    ▼
+SHOPER  ERP  HURTOWNIA
+   │    │    │
+   └────┼────┘
+        ▼
+   BASELINKER
+        │
+   ┌────┼────┐
+   ▼    ▼    ▼
+ALLEGRO ERLI EMPIK`;
+---
+
+<Layout
+  title="Magazyny i źródła stanów w BaseLinker | Zyndra"
+  description="Które źródło jest właścicielem stanu magazynowego? Konfiguracja magazynów w BaseLinker tak, żeby stany na marketplace'ach zawsze się zgadzały."
+>
+  <DeptHero
+    breadcrumb="BaseLinker → Magazyny"
+    title="Stany, które nie chcą się zgadzać między systemami."
+    lead="Gdy kilka źródeł (sklep, ERP, hurtownia) próbuje jednocześnie aktualizować ten sam stan, prędzej czy później pojawi się nadsprzedaż. Konfiguracja magazynów w BaseLinker rozstrzyga, które źródło jest właścicielem prawdy o stanie."
+  />
+
+  <FlowDiagram diagram={diagram} />
+
+  <BulletSection
+    label="Częste pytania"
+    title="Problemy, na które odpowiada ta strona"
+    items={[
+      "Który system jest źródłem stanów?",
+      "Dlaczego stany się nie synchronizują?",
+      "Dlaczego marketplace pokazuje inną ilość?",
+      "Jak obsłużyć kilka magazynów?",
+      "Jak ustawić synchronizację?",
+    ]}
+  />
+
+  <CaseStudyPlaceholder />
+
+  <CTABanner title="Potrzebujesz uporządkować magazyny?" />
+
+  <RelatedLinks
+    links={[
+      { href: "/baselinker/", label: "← Cały dział BaseLinker" },
+      { href: "/baselinker/konfiguracja/", label: "Konfiguracja" },
+      { href: "/baselinker/katalog-produktow/", label: "Katalog produktów" },
+      { href: "/baselinker/mapowanie/", label: "Mapowanie" },
+    ]}
+  />
+</Layout>

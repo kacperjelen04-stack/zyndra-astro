@@ -1,0 +1,48 @@
+---
+import SEOHead from "../components/seo/SEOHead.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import CookieBanner from "../components/layout/CookieBanner.astro";
+import "../styles/global.css";
+
+export interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+}
+
+const { title, description, canonicalPath, noindex = false } = Astro.props;
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <SEOHead
+      title={title}
+      description={description}
+      canonicalPath={canonicalPath}
+      noindex={noindex}
+    />
+  </head>
+  <body>
+    {GTM_ID && (
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"
+          title="Google Tag Manager"
+        ></iframe>
+      </noscript>
+    )}
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <CookieBanner />
+  </body>
+</html>

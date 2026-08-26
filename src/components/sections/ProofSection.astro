@@ -1,0 +1,77 @@
+---
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export interface Props {
+  label?: string;
+  title: string;
+  stats: Stat[];
+  note?: string;
+}
+
+const { label = "Dlaczego to działa", title, stats, note } = Astro.props;
+---
+
+<section class="proof">
+  <div class="proof__inner">
+    <p class="section-label">{label}</p>
+    <h2 class="section-title">{title}</h2>
+
+    <div class="proof__grid">
+      {stats.map((stat) => (
+        <div class="proof-stat">
+          <div class="proof-stat__value">{stat.value}</div>
+          <div class="proof-stat__label">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+
+    {note && <p class="proof__note">{note}</p>}
+  </div>
+</section>
+
+<style>
+  .proof {
+    padding: 88px 24px;
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .proof__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .proof__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 44px;
+  }
+  .proof-stat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .proof-stat__value {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .proof-stat__label {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+  .proof__note {
+    margin-top: 32px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    max-width: 680px;
+  }
+</style>

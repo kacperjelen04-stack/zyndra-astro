@@ -1,0 +1,66 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import DeptHero from "../../components/baselinker/DeptHero.astro";
+import FlowDiagram from "../../components/baselinker/FlowDiagram.astro";
+import BulletSection from "../../components/baselinker/BulletSection.astro";
+import CaseStudyPlaceholder from "../../components/baselinker/CaseStudyPlaceholder.astro";
+import CTABanner from "../../components/baselinker/CTABanner.astro";
+import RelatedLinks from "../../components/baselinker/RelatedLinks.astro";
+
+const diagram = `       SHOPER
+          │
+   ┌──────┼──────┐
+   ▼      ▼      ▼
+PRODUKTY STANY ZAMÓWIENIA
+   │      │      │
+   └──────┼──────┘
+          ▼
+     BASELINKER
+          │
+   ┌──────┼──────┐
+   ▼      ▼      ▼
+ALLEGRO  ERLI   EMPIK`;
+---
+
+<Layout
+  title="Shoper + BaseLinker — pełna integracja | Zyndra"
+  description="Największy zakres integracji: Shoper i BaseLinker spięte w jeden system — produkty, warianty, SKU/EAN, ceny, stany, zamówienia i mapowanie na marketplace'y."
+>
+  <DeptHero
+    breadcrumb="BaseLinker → Shoper"
+    title="Shoper i BaseLinker, spięte w jeden system sprzedaży."
+    lead="To największy zakres integracji w całym dziale — Shoper jako źródło produktów i zamówień, BaseLinker jako centralny hub rozsyłający dane dalej na marketplace'y."
+  />
+
+  <FlowDiagram diagram={diagram} />
+
+  <BulletSection
+    label="Zakres"
+    title="Co obejmuje integracja Shoper + BaseLinker"
+    items={[
+      "Produkty",
+      "Warianty",
+      "SKU / EAN",
+      "Ceny",
+      "Stany",
+      "Zamówienia",
+      "Statusy",
+      "Mapowanie",
+      "Marketplace",
+    ]}
+  />
+
+  <CaseStudyPlaceholder />
+
+  <CTABanner title="Shoper i BaseLinker jako jeden spójny system" />
+
+  <RelatedLinks
+    links={[
+      { href: "/baselinker/", label: "← Cały dział BaseLinker" },
+      { href: "/baselinker/allegro/", label: "Allegro" },
+      { href: "/baselinker/erli/", label: "ERLI" },
+      { href: "/baselinker/empik/", label: "Empik" },
+      { href: "/baselinker/katalog-produktow/", label: "Katalog produktów" },
+    ]}
+  />
+</Layout>

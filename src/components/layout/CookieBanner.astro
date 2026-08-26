@@ -1,0 +1,42 @@
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Zgoda na pliki cookie">
+  <p class="cookie-banner__text">
+    Używamy plików cookie do analizy ruchu i pomiaru skuteczności kampanii marketingowych.
+    Szczegóły znajdziesz w <a href="/polityka-cookies">polityce cookies</a>.
+  </p>
+  <div class="cookie-banner__actions">
+    <button class="btn-outline btn--sm" id="cookieReject" type="button">Tylko niezbędne</button>
+    <button class="btn-primary btn--sm" id="cookieAccept" type="button">Akceptuję wszystkie</button>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = "cookie_consent";
+  const banner = document.getElementById("cookieBanner");
+  const acceptBtn = document.getElementById("cookieAccept");
+  const rejectBtn = document.getElementById("cookieReject");
+
+  function updateConsent(granted: boolean) {
+    if (typeof window.gtag === "function") {
+      window.gtag("consent", "update", {
+        analytics_storage: granted ? "granted" : "denied",
+        ad_storage: granted ? "granted" : "denied",
+      });
+    }
+  }
+
+  if (banner && !localStorage.getItem(STORAGE_KEY)) {
+    window.setTimeout(() => banner.classList.add("is-visible"), 600);
+  }
+
+  acceptBtn?.addEventListener("click", () => {
+    localStorage.setItem(STORAGE_KEY, "accepted");
+    banner?.classList.remove("is-visible");
+    updateConsent(true);
+  });
+
+  rejectBtn?.addEventListener("click", () => {
+    localStorage.setItem(STORAGE_KEY, "rejected");
+    banner?.classList.remove("is-visible");
+    updateConsent(false);
+  });
+</script>

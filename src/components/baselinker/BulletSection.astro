@@ -1,0 +1,80 @@
+---
+export interface Props {
+  label?: string;
+  title: string;
+  items: string[];
+  numbered?: boolean;
+}
+
+const { label = "Zakres", title, items, numbered = false } = Astro.props;
+---
+
+<section class="bullets">
+  <div class="bullets__inner">
+    <p class="section-label">{label}</p>
+    <h2 class="section-title">{title}</h2>
+    <ul class="bullets__list" class:list={[{ "bullets__list--numbered": numbered }]}>
+      {items.map((item, i) => (
+        <li>
+          {numbered ? (
+            <span class="bullets__num">{i + 1}</span>
+          ) : (
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8.5L6.2 11.5L13 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          )}
+          {item}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .bullets {
+    padding: 64px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .bullets__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .bullets__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .bullets__list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.92rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .bullets__list svg {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .bullets__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 5px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+  }
+</style>
