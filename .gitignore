@@ -1,5 +1,39 @@
+# Zależności / Node.js
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build / Astro
 dist/
-.env
-.DS_Store
 .astro/
+
+# Zmienne środowiskowe (zabezpieczenie haseł)
+.env
+.env.production
+.env.development
+.env.local
+*.local
+
+# Wyjątek - ten plik chcemy trzymać w repozytorium
+!.env.example
+
+# Ukryty skrypt PHP (zgodnie z wcześniejszymi krokami)
+public/mail.php
+
+# Systemowe (macOS/Windows)
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+
+# Edytory / IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
